@@ -4,7 +4,7 @@ import pybliometrics.scopus
 import voyageai
 import anthropic
 
-def set_api_keys(pybliometrics_key: str = None, claude_key: str = None, voyage_key: str = None):
+def set_api_keys(pybliometrics_key: str = None, grok_key: str = None, voyage_key: str = None):
     """
     Set API keys for the various services used by the TopicAI.
     If keys are not provided, it will attempt to load them from environment variables.
@@ -18,8 +18,8 @@ def set_api_keys(pybliometrics_key: str = None, claude_key: str = None, voyage_k
         os.environ['PYBLIOMETRICS_API_KEY'] = pybliometrics_key
     if voyage_key:
         os.environ['VOYAGE_API_KEY'] = voyage_key
-    if claude_key:
-        os.environ['ANTHROPIC_API_KEY'] = claude_key
+    if grok_key:
+        os.environ['ANTHROPIC_API_KEY'] = grok_key
 
     try:
         # Initialize Scopus with the API key
