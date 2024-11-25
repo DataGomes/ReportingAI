@@ -7,7 +7,7 @@ This library generates reports based on scientific literature queries using Scop
 You can install the Report Generator directly from GitHub:
 
 ```
-pip install git+https://github.com/DataGomes/TopicAI
+pip install git+https://github.com/DataGomes/ReportingAI
 
 ## API Keys
 
@@ -37,7 +37,7 @@ Ensure you have the necessary permissions and subscriptions for Scopus API, Voya
 ### As a library
 
 ```python
-from report_generator import TopicAI, set_api_keys
+from report_generator import ReportingAI, set_api_keys
 
 # Set your API keys
 set_api_keys(
