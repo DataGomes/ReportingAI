@@ -269,6 +269,8 @@ class TopicAI:
 
             5. Prioritize the FIRST KEYWORDS more heavily when determining the answer, giving them greater weight than subsequent keywords
 
+            6. The answer should ONLY contain the label of the topic, without any reasoning.
+
             Your task:
             Keywords: 
             [{formatted_keywords[i]}]
