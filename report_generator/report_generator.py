@@ -166,7 +166,7 @@ class TopicAI:
         all_embeddings = []
         for i in range(0, len(texts), batch_size):
             batch_texts = texts[i:i+batch_size]
-            batch_embeddings = self.vo.embed(batch_texts, model="voyage-large-2-instruct", input_type=input_type).embeddings
+            batch_embeddings = self.vo.embed(batch_texts, model="voyage-3-large", input_type=input_type).embeddings
             all_embeddings.extend(batch_embeddings)
 
         if len(all_embeddings) == 1:
@@ -201,7 +201,7 @@ class TopicAI:
             umap_model = UMAP(n_components=5, n_neighbors=15, min_dist=0.0, metric='cosine', low_memory=False, random_state = random_state)
             umap_embeddings = umap_model.fit_transform(embeddings)
 
-            ClusterSize = int(len(docs)/100)
+            ClusterSize = int(len(docs)/200)
             if ClusterSize < 10:
                 ClusterSize = 10
 
@@ -329,16 +329,16 @@ class TopicAI:
         topics = topics.sort_values(by="Similarities", ascending=False)
 
         for index, row in topics.iterrows():
-            if row['Similarities'] < 0.75:
+            if row['Similarities'] < 0.65:
                 topics.at[index, 'Choice'] = 'N'
 
         n_indices = topics[topics['Choice'] == 'N'].index
 
         for idx in n_indices:
             current_min = topics[topics["Choice"] == 'Y']["Similarities"].min()
-            if current_min > 0.75:
-                current_min = 0.75
-            if current_min - topics.loc[idx, "Similarities"] <= 0.001 and topics.loc[idx, "Similarities"] > 0.7:
+            if current_min > 0.65:
+                current_min = 0.65
+            if current_min - topics.loc[idx, "Similarities"] <= 0.001 and topics.loc[idx, "Similarities"] > 0.6:
                 topics.loc[idx, "Choice"] = "Y"
 
         topics = topics.sort_values(by="Indexes", ascending=True)
