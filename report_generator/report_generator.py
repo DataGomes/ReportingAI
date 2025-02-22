@@ -498,7 +498,7 @@ class TopicAI:
         # Using ThreadPoolExecutor to parallelize API calls
         partial_report = partial(self.generate_report,  df_scopus=filtered_df, data_embedding = data_embedding)
         theme = filtered_send_df[filtered_send_df['Choice'] == 'Y']['Response'].tolist()
-        with ThreadPoolExecutor() as executor:
+        with ThreadPoolExecutor(max_workers = 5) as executor:
             # Using map to ensure the order of results matches the order of 'themes'
             results = list(executor.map(partial_report, theme))
         # Combining all individual reports into a single string
